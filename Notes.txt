@@ -1,0 +1,72 @@
+CSS Grid- responsive items/cells
+    --Remaining questions:
+        a) honestly,  still don't get what percentages in either g-t-c or grid-item's max/min-width refer to.  I think i do for a sec, then I try something else which breaks my understanding all over again
+        b) related to (a), don't fully know how g-t-c auto works... seems to work differently when placed in min vs max...
+    --Some findings though:
+
+    1) Set grid display : inline-grid  (!!)
+       OR set a grid container to inline-block
+
+    2) to define max cell size via grid (or grid container) max-width, set that max-width in px, then
+        .grid {
+            grid-template-columns: repeat(3, minmax(50px,auto));
+        }
+
+        .grid-item {
+            width: calc((100vmin - 40*3px) / 3);
+            min-width: 100%; 
+            max-width: 100%;
+        }
+    
+    3) To instead define cell size regardless of grid size (ie, have grid size solely determined by its cells) :
+
+        /* 2 options: */
+        /* 1a:
+            -- Grid determines minmax
+            -- Grid-item determines in-between, just sets min/max-widths at 100%, equalling what was set in Grid's gtc minmax
+            ---Problem: makes grid no longer height-change responsive, just width-change
+        //////////
+        .grid {
+            grid-template-columns: repeat(3,minmax(50px,200px));
+        }
+
+        .grid-item {
+            width: calc((100vmin - 40*3px) / 3);
+            min-width: 100%;
+            max-width: 100%;
+        }
+        /////////
+
+            1b:
+              -- Fix 1a problem by setting grid max to auto; grid-item max-width to px not %;
+              -- (Don't do just grid min auto and grid max as px --> grid item can get smaller than grid cell...
+                    AND max px only matters with width-change, height-change could effectively take cells/items past max px...)
+        
+        .grid {
+            grid-template-columns: repeat(3,minmax(50px,auto));
+        }
+
+        .grid-item {
+            width: calc((100vmin - 40*3px) / 3);
+            min-width: 100%;
+            max-width: 200px;
+        }
+
+
+        */
+
+        /* 2: Take 1b to completion -->
+            -- Grid simply determines how many in each row
+            -- Grid-item completely determines size of self AND its grid-cell
+        ////////////
+        .grid {
+            grid-template-columns: repeat(3,auto);
+        }
+
+        .grid-item {
+            width: calc((100vmin - 40*3px) / 3);
+            min-width: 50px;
+            max-width: 200px;
+        }
+        //////////
+        */

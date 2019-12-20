@@ -1,0 +1,782 @@
+:root {
+    --easy-columns: 3;
+    --medium-columns: 5;
+    --hard-columns: 7;
+    --impossible-columns: 9;
+    --grid-gap: 20px;
+    --section-padding: 30px;
+
+    --easy-column-offset: calc((var(--easy-columns) - 1) * var(--grid-gap) + (2 * var(--section-padding)));
+    --medium-column-offset: calc((var(--medium-columns) - 1) * var(--grid-gap) + (2 * var(--section-padding)));
+    --hard-column-offset: calc((var(--hard-columns) - 1) * var(--grid-gap) + (2 * var(--section-padding)));
+    --impossible-column-offset: calc((var(--impossible-columns) - 1) * var(--grid-gap) + (2 * var(--section-padding)));
+
+    --easy-scene-size: calc((100vmin - var(--easy-column-offset)) / var(--easy-columns));
+    --medium-scene-size: calc((100vmin - var(--medium-column-offset)) / var(--medium-columns));
+    --hard-scene-size: calc((100vmin - var(--hard-column-offset)) / var(--hard-columns));
+    --impossible-scene-size: calc((100vmin - var(--impossible-column-offset)) / var(--impossible-columns));
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    font-family: sans-serif;
+}
+
+body {
+    transition: transform 1s;
+    height: 100vh;
+    width: 100%;
+    overflow-y: hidden;
+    background: lightblue;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.primary-button {
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border-radius:10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px 4px 4px 1px;
+    display: block;
+    color:#ffffff;
+	font-size:20px;
+	padding:10px 10px;
+    text-shadow:0px 1px 0px #154682;
+    box-shadow: inset -3px -3px 0 0 #154682;
+    margin: 10px;
+}
+
+.primary-button:hover {
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+
+.primary-button:active {
+    border-width: 3px 3px 3px 3px;
+    box-shadow: inset -2px -2px 0 0 #154682;
+}
+
+.section-container {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.menu-section, .game-section {
+    padding: 30px;
+    height: 100%;
+    width: 100%;
+}
+
+/* .........................................Menu Section.................................................................... */
+.menu-section {
+    /* background: lightblue; */
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-section > * {
+    margin-bottom: 20px;
+}
+
+.title {
+    display: grid;
+    grid-template-columns: repeat(6, 150px);
+    grid-template-rows: repeat(2, 150px);
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.title .scene {
+    font-size: 10rem;
+}
+
+form {
+    display: inline-block;
+    font-size: 2rem;
+    border: 2px solid black;
+}
+
+.fieldsets {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+fieldset {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.fieldset-option {
+    text-align: left;
+    font-size: 3rem;
+}
+
+legend {
+    font-size: 4rem;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  
+    border: 2px solid gray;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+}
+
+input:checked {
+    background: black;
+    /* border: 6px solid black; */
+}
+
+.start-button {
+    display: inline-block;
+}
+
+.high-scores-header {
+    padding-bottom: 10px;
+    font-size: 3rem;
+}
+
+/* ............................Game Section....................................... */
+
+.game-section {
+    position: relative;
+}
+
+.in-game-menu-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-210px);
+    transition: transform .5s ease-in;
+    z-index: 10;
+}
+
+#menu-arrow:checked ~ .in-game-menu-container {
+    transform: translateX(0px);
+}
+
+#menu-arrow:checked ~ .in-game-menu-container > .divider::after {
+    transform: rotate(-180deg) translate(50%, 50%);
+}
+
+.in-game-menu {
+    padding-top: 30px;
+    padding-left: 30px;
+    position: absolute;
+    height: 100%;
+    width: 210px;
+    top: 0;
+    left: 0;
+    background-color: rgb(192, 19, 19);
+}
+
+.in-game-menu .primary-button {
+    margin: 0 0 10px 0;
+}
+
+#menu-arrow {
+    display: none;
+}
+
+.divider {
+    cursor: pointer;
+
+    height: 100%;
+    width: 25px;
+    position: absolute;
+    top: 0;
+    left: 210px;
+
+    border: 0 2px 0;
+    border-style: solid;
+    border-color: black;
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+
+    font-size: 4rem;
+    font-family: monospace;
+    font-style: bold;
+
+
+    background-color: rgb(206, 60, 60);
+
+}
+
+.divider::after {
+    content: ">";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .5s ease-in;
+}
+
+.in-game-menu .high-score {
+    width: 160px;
+    height: 75px;
+    background: #007dc1;;
+    color: white;
+    font-size: 2.0rem;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.grid-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-grid {
+    display: grid;
+    max-height: 100%;
+    max-width: 100%;
+    grid-gap: 20px;
+}
+
+.card-grid.easy {
+    grid-template-columns: repeat(var(--easy-columns), minmax(40px, var(--easy-scene-size)));
+    /* grid-template-columns: repeat(var(--easy-columns), minmax(40px, calc((100vmin - var(--easy-column-offset)) / var(--easy-columns)))); */
+}
+
+.card-grid.medium {
+    grid-template-columns: repeat(var(--medium-columns), minmax(40px, var(--medium-scene-size)));
+}
+
+.card-grid.hard {
+    grid-template-columns: repeat(var(--hard-columns), minmax(40px, var(--hard-scene-size)));
+}
+
+.card-grid.impossible {
+    grid-template-columns: repeat(var(--impossible-columns), minmax(40px, var(--impossible-scene-size)));
+}
+
+.scene {
+    width: 100%;
+    font-size: 2rem;
+    perspective: 1000px;
+    /* Use something like below if set grid(/container) to set width...?  */
+    /* width: 100vmin;
+    min-width: 100%;
+    max-width: 100%; */
+}
+
+/* Responsive Font Size. 
+    Can't have below var(--"difficulty"-column-offset) because the equation relies on 2rem + 100vmin MINUS var(--"difficulty"-column-offset).
+        2rem is meant to be the minimum, but when 100vmin drops less than column-offset...it ends up being 2rem + (negativeNumber), making font-size continue to drop below 2rem.
+    Problem: media queries don't accept var() variables. Specs working now on introducing env() variables that would work. So have to just use actual value for now...
+    Problem: cumbersome to write separate media query for all difficulties and their column-offsets...Could just write one for impossible and let the others be a little off... 
+    The equation: 
+        if(scene-size === 40px) --> font-size >= 20px, <= 40px;
+        if(scene-size >40px) --> font-size = 40px + (1/2 * card-size);
+    UPDATED:
+        didn't like that font-size kept dropping from 40px to 20px while scene-size stopped at 40px, so found out exactly where scene-size reaches minimum of 40px, and THAT's where media-query kicks in to make
+        font-size 20px. And just make font-size til then straight up 1/2 scene-size.
+            Finding viewport dimension at which scene-size reaches min 40px:
+                Find X:     (X - columnOffset) / columnNumber = 40px
+    */
+@media (min-width: 220px) and (min-height: 220px) {
+    .card-grid.easy .scene {
+        font-size: calc((var(--easy-scene-size) / 2) );
+    }
+}
+
+@media (min-width: 340px) and (min-height: 340px) {
+    .card-grid.medium .scene {
+        font-size: calc((var(--medium-scene-size) / 2) );
+    }
+}
+
+@media (min-width: 460px) and (min-height: 460px) {
+    .card-grid.hard .scene {
+        font-size: calc((var(--hard-scene-size) / 2) );
+    }
+}
+
+@media (min-width: 580px) and (min-height: 580px) {
+    .card-grid.impossible .scene {
+        font-size: calc((var(--impossible-scene-size) / 2) );
+    }
+}
+
+.card {
+    width: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+div.card {
+    padding-top: 100%;  /* based on item width --> 1:1 aspect ratio*/
+}
+
+.card__face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card__face--front {   
+    background: blue;
+    transform: rotateY(0deg);
+}
+
+.card__face--back {
+    background: red;
+    transform: rotateY(180deg);
+    /* For Sake of Number Cards. Doesn't matter to or effect image cards */
+    color: white;
+    /* font-size: calc(2rem + 10vmin); */
+    /* font-size: calc(2rem + (((100vmin - var(--easy-column-offset)) / var(--easy-columns)) / 2) ); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* width: 100%;
+    height: 100%; */
+
+}
+
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+
+
+.counter {
+    width: 100%;
+    /* Padding-top screws with text counter. Still keep appropriate height based on neighbor grid cells in row */
+    /* padding-top: 100%; */ 
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: calc(2rem + (((100vmin - var(--easy-column-offset)) / var(--easy-columns)) / 2) ); */
+    line-height: 0;
+    z-index: 1;
+}
+
+
+.endgameCounterDisplay {
+    transform: scale(3);
+    transition: transform 2s;
+}
+
+.scroll-to-game {
+    transform: translateY(-100vh);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+/* Popup Menu */
+
+.popup-container {
+    background-color: rgba(65, 149, 182, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+}
+
+.popup {
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
+    background: rgb(206, 60, 60);
+    font-size: 3rem;
+    max-width: 90%;
+}
+
+.popup-button-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*........................... Menu Title Animation.................. */
+
+#letter-o {
+    animation:  3s linear 1 firstFlipFail,
+                1s 1 5.5s linear forwards flipSuccess;
+}
+
+#letter-g {
+    animation:  2s linear 1 1s secondFlipFail,
+                1s 1 6.25s linear forwards flipSuccess;
+}
+
+#letter-e1 {
+    animation: 1s 1 3s linear forwards flipSuccess;
+}
+
+#letter-e2 {
+    animation: 1s 1 4s linear forwards flipSuccess;
+}
+
+#letter-m1 {
+    animation: 1s 1 5s linear forwards flipSuccess;
+}
+
+#letter-m2 {
+    animation: 1s 1 5.25s linear forwards flipSuccess;
+}
+
+/* letter-o, see second animation attached above */
+
+#letter-r {
+    animation: 1s 1 5.75s linear forwards flipSuccess;
+}
+
+#letter-y {
+    animation: 1s 1 6.0s linear forwards flipSuccess;
+}
+
+/* letter-g, see second animation attached above */
+
+#letter-a {
+    animation: 1s 1 6.5s linear forwards flipSuccess;
+}
+
+#letter-m3 {
+    animation: 1s 1 6.75s linear forwards flipSuccess;
+}
+
+@keyframes firstFlipFail {
+    0% {
+        transform: rotateY(0deg);
+    }
+    33.3%, 66.6% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes secondFlipFail {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes flipSuccess {
+    from {
+        transform: rotateY(0deg);
+    }
+    
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+/* ...................Rest of Menu Animation.................... */
+
+/*  
+Originally had these set, then kept animation-fill-mode as forwards, 
+but that kept these visible even when container was made hidden when scrolling to game section
+
+form, .high-scores-container {
+    visibility: hidden;
+    opacity: 0;
+} 
+
+*/
+
+.animate-form {
+    animation:  7s makeVisible,
+                8s linear makeOpaque;
+}
+
+.animate-scores {
+    animation:  7.5s makeVisible,
+                8.5s linear makeOpaque;
+}
+
+@keyframes makeVisible {
+    0%, 99.9% {
+        visibility: hidden;
+    }
+
+    100% {
+        visibility: visible;
+    }
+}
+
+@keyframes makeOpaque {
+    0%, 87.5% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* .................. High Score Boxes w/Animation ................... */
+
+.high-scores-container .scene {
+    position: relative;
+    perspective: 1000px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 200px;
+    height: 50px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-50px);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.box__face {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    color: white;
+    font-size: 1.6rem;
+    background-color: rgb(206, 60, 60);
+}
+
+/* Box Face Side Dimensions and Absolute positioning*/
+
+.box__face--front,
+.box__face--back {
+    width: 200px;
+    height: 50px;
+}
+
+.box__face--right,
+.box__face--left {
+    width: 50px;
+    height: 50px;
+    left: 75px;
+}
+
+.box__face--top,
+.box__face--bottom {
+    width: 200px;
+    height: 50px;
+}
+
+/* Box Face Transforms */
+
+.box__face--front  { transform: rotateY(  0deg) translateZ(25px); }
+.box__face--back   { transform: rotateY(180deg) translateZ(25px) rotate(180deg); }
+
+.box__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+.box__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+
+.box__face--top    { transform: rotateX( 90deg) translateZ(25px); }
+.box__face--bottom { transform: rotateX(-90deg) translateZ(25px); }
+
+
+/* Box Face Colors */
+
+.box__face--front { background-color: red; }
+.box__face--bottom { background-color: blue; }
+.box__face--back { background-color: red; }
+.box__face--top { background-color: blue; }
+.box__face--left, .box__face--right { background-color: black; }
+
+
+
+.box {
+    animation: 10s linear infinite spinBox;
+}
+
+@keyframes spinBox {
+    0%, 12.5% {
+        transform: rotateX(0deg);
+    }
+
+    25%, 37.5% {
+        transform: rotateX(90deg);
+    }
+
+    50%, 62.5% {
+        transform: rotateX(180deg);
+    }
+
+    75%, 87.5% {
+        transform: rotateX(270deg);
+    }
+
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+/* ....................................Media Queries.......................................... */
+
+@media (max-width: 1000px), (max-height: 800px) {
+    .title {
+        grid-template-columns: repeat(6, 75px);
+        grid-template-rows: repeat(2, 75px);
+    }
+
+    .title .scene {
+        font-size: 5rem;
+    }
+
+    .fieldset-option {
+        font-size: 2.2rem;
+    }
+
+    legend {
+        font-size: 3rem;
+    }
+
+    input {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .high-scores-header {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 550px), (max-height: 600px) {
+    .menu-section {
+        padding: 10px;
+    }
+
+    .menu-section > * {
+        margin-bottom: 5px;
+    }
+    
+    .title {
+        grid-template-columns: repeat(6, 40px);
+        grid-template-rows: repeat(2, 40px);
+    }
+
+    .title .scene {
+        font-size: 3rem;
+    }
+
+    .fieldset-option {
+        font-size: 1rem;
+    }
+
+    legend {
+        font-size: 1.4rem;
+    }
+
+    input {
+        width: .8rem;
+        height: .8rem;
+    }
+
+    #menu-container .primary-button {
+        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        font-size:10px;
+        padding:5px 5px;
+        margin: 5px;
+    }
+
+    .high-scores-header {
+        font-size: 1.3rem;
+    }
+
+    .box__face {
+        font-size: .8rem;
+    }
+
+    .box {
+        width: 100px;
+        height: 25px;
+    }
+    
+    .box__face--front,
+    .box__face--back {
+        width: 100px;
+        height: 25px;
+    }
+    
+    .box__face--right,
+    .box__face--left {
+        width: 25px;
+        height: 25px;
+        left: 37.5px;
+    }
+    
+    .box__face--top,
+    .box__face--bottom {
+        width: 100px;
+        height: 25px;
+        /* top: 50px; */
+    }    
+    
+    .box__face--front  { transform: rotateY(  0deg) translateZ(12.5px); }
+    .box__face--back   { transform: rotateY(180deg) translateZ(12.5px) rotate(180deg); }
+    
+    .box__face--right  { transform: rotateY( 90deg) translateZ(50px); }
+    .box__face--left   { transform: rotateY(-90deg) translateZ(50px); }
+    
+    .box__face--top    { transform: rotateX( 90deg) translateZ(12.5px); }
+    .box__face--bottom { transform: rotateX(-90deg) translateZ(12.5px); }
+}

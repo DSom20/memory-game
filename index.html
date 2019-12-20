@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="section-container" id="menu-container">
+        <section class="menu-section">
+            <div class="title">
+                <div class="scene ">
+                    <div class="card" id="letter-m1">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">M</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-e1">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">E</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-m2">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">M</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card " id="letter-o">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">O</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-r">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">R</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-y">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">Y</div>
+                    </div>
+                </div>
+                <div class="space-placeholder"></div>
+                <div class="scene ">
+                    <div class="card " id="letter-g">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">G</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-a">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">A</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-m3">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">M</div>
+                    </div>
+                </div>
+                <div class="scene ">
+                    <div class="card" id="letter-e2">
+                        <div class="card__face card__face--front"></div>
+                        <div class="card__face card__face--back">E</div>
+                    </div>
+                </div>
+                <div class="space-placeholder"></div>
+            </div>
+            <form action="#" class="animate-form">
+                <div class="fieldsets">
+                    <fieldset class="form-widget">
+                        <legend>Difficulty</legend>
+                        <div class="fieldset-option difficulty-option">
+                            <input type="radio" name="difficulty" id="easy" value="easy" checked>
+                            <label for="easy">Easy</label>
+                        </div>
+                        <div class="fieldset-option difficulty-option">
+                            <input type="radio" name="difficulty" id="medium" value="medium">
+                            <label for="medium">Medium</label>
+                        </div>
+                        <div class="fieldset-option difficulty-option">
+                            <input type="radio" name="difficulty" id="hard" value="hard">
+                            <label for="hard">Hard</label>
+                        </div>
+                        <div class="fieldset-option difficulty-option">
+                            <input type="radio" name="difficulty" id="impossible" value="impossible">
+                            <label for="">Impossible</label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-widget">
+                        <legend>Card Type</legend>
+                        <div class="fieldset-option card-option">
+                            <input type="radio" name="card-type" id="numbers" value="numbers" checked>
+                            <label for="numbers">Numbers</label>
+                        </div>
+                        <div class="fieldset-option card-option">
+                            <input type="radio" name="card-type" id="cats" value="cats">
+                            <label for="cats">Cats</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- <div class="form-widget"></div> -->
+                <button type="submit" class="start-button primary-button">New Game</button>
+            </form>
+            <div class="high-scores-container animate-scores">
+                <h2 class="high-scores-header">Your High Scores:</h2>
+                <div class="scene">
+                        <div class="box box1">
+                            <div class="box__face box__face--front"> <!--front-->
+                                <p>Easy-Numbers: <span id="highScore-easy-numbers" class="high-score high-score-easy high-score-numbers"></span></p>
+                            </div>
+                            <div class="box__face box__face--bottom">  <!--bottom-->
+                                <p>Medium-Numbers: <span id="highScore-medium-numbers" class="high-score high-score-medium high-score-numbers"></span></p>
+                            </div>
+                            <div class="box__face box__face--back"> <!--back-->
+                                <p>Hard-Numbers: <span id="highScore-hard-numbers" class="high-score high-score-hard high-score-numbers"></span></p>
+                            </div>
+                            <div class="box__face box__face--top"> <!--top-->
+                                <p>Impossible-Numbers: <span id="highScore-impossible-numbers" class="high-score high-score-impossible high-score-numbers"></span></p>
+                            </div>
+                            <div class="box__face box__face--right"></div>  <!--right-->
+                            <div class="box__face box__face--left"></div>  <!--left-->
+                        </div>
+                        <div class="box">
+                            <div class="box__face box__face--front"> <!--front-->
+                                <p>Easy-Cats: <span id="highScore-easy-cats" class="high-score high-score-easy high-score-cats"></span></p>
+                            </div>
+                            <div class="box__face box__face--bottom">  <!--bottom-->
+                                <p>Medium-Cats: <span id="highScore-medium-cats" class="high-score high-score-medium high-score-cats"></span></p>
+                            </div>
+                            <div class="box__face box__face--back"> <!--back-->
+                                <p>Hard-Cats: <span id="highScore-hard-cats" class="high-score high-score-hard high-score-cats"></span></p>
+                            </div>
+                            <div class="box__face box__face--top"> <!--top-->
+                                <p>Impossible-Cats: <span id="highScore-impossible-cats" class="high-score high-score-impossible high-score-cats"></span></p>
+                            </div>
+                            <div class="box__face box__face--right"></div>  <!--right-->
+                            <div class="box__face box__face--left"></div>  <!--left-->
+                        </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="section-container hidden" id="game-container">
+        <section class="game-section">
+            <input type="checkbox" id="menu-arrow">
+            <div class="in-game-menu-container">
+                <label for="menu-arrow" class="divider"></label>
+                <div class="in-game-menu">
+                    <button class="in-game-button restart-button primary-button">Restart Game</button>
+                    <button class="in-game-button quit-button primary-button">Quit</button>
+                    <p class="high-score"></p>
+                </div>
+            </div>
+            <div class="grid-container"></div>
+        </section>
+    </div>
+</body>
+</html>
+
+
+
+
+<!-- <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="counter">
+        <p>10</p>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">front</div>
+            <div class="card__face card__face--back">back</div>
+        </div>
+    </div> -->

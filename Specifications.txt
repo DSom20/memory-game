@@ -1,0 +1,125 @@
+Memory Game Requirements
+
+Summary:
+
+  Players will be shown a collection of cards, face down, and can click on a card to reveal what’s underneath. 
+  After clicking on two cards, the game should check to see whether they match. 
+    If they do, they will remain facing up. 
+    If not, the cards should remain displayed to the player for a couple of seconds, and then flip back down. 
+  The goal of the game is to match up pairs of cards in as few clicks as possible.
+
+Specifications:
+
+  User should be able to START a new game.
+  
+  Click card -> reveal what's underneath it.
+
+  Track and display number of times cards have been turned over.
+
+  User should only be able to see at most two cards at a time. (Not counting former matches...)
+
+  Clicking on two matching cards = "match" -> those two cards should stay face up. (Make sure doesn't work if just click same card twice)
+
+  Clicking on two non-matching cards -> should remain visible for at least 1 second before flipping back over.
+
+  Bonus: Store  lowest-scoring game in local storage, so user can see record of best game played.
+
+
+TASKS:
+
+  Game Board:
+    XX__Build grid
+    XX__Make cards
+      XX__Flippable
+        XX__Transforms
+        Xx__Event listeners (and handlers, though runs into game logic)
+      XX__Certain number of matching cards
+      XX__Source images
+    XX__Randomly assign cards to grid
+    00__Counter HTML/CSS/JS
+    00__Basic start button
+
+  Game logic:
+    XX__Game start condition: click Start button.
+    XX__Main Logic:
+          Click -> 
+            ++ counter,
+            First or second click?
+              First: keep card up til second
+              Second: 
+                if match, keep first and second flipped permanently; (via checking image source?)
+                else, keep both visible 1 second, then flip back. (not letting other cards be flipped til flipped back...)
+          Game end condition: all cards flipped.
+    (Game end scene...?)
+
+  Style & extras:
+    Actual images
+    Start page/button
+    Counter
+    End scene
+    Local Storage
+
+    Image array :
+      [1: src1, 2: src2, 3: src3...]
+    forLoop, math.random choosing index from image array, splice out that element & clone it & put them in prepArray, decrement forLoop counter
+
+    prepArray: original and clone of X number of images to use
+      [1: src1, 2: src1, 3: src2, 4: src2...]
+      or
+      [1: {src: src1, cardID: 1}, 2: {src: src1, cardID: 1}, 3: {src: src2, cardID: 2}...]
+    forLoop, math.random choosing index from prepArray, splice out element, push to cardArray (or directly append to grid), decrement forLoop
+
+    cardArray: actual ordered list of cards to be put in grid
+    forLoop, append to grid, give data-card-index
+
+
+
+    Matching: check either img src, OR check data-card-id
+
+    Cat images:
+
+    https://s7d2.scene7.com/is/image/PetSmart/ARTHMB-HowToHelpYourCatHaveFewerHairballs-20160818?$AR1104$
+
+    https://i.ytimg.com/vi/hYGOTmdKmV4/hqdefault.jpg
+
+    https://img2.timeinc.net/health/img/web/2014/10/how-take-care-cat-400x400.jpg
+
+    https://i.ytimg.com/vi/Zwq98O42ta0/hqdefault.jpg
+
+    https://i.ytimg.com/vi/YOKOLMbyhpc/hqdefault.jpg
+
+    https://www.aspcapetinsurance.com/media/1076/11.jpg
+
+    https://i.ytimg.com/vi/5wosC9QLQTM/hqdefault.jpg
+
+    https://i.ytimg.com/vi/ZG6ggBPsgXo/hqdefault.jpg
+
+    https://i.ytimg.com/vi/4gF1s84XEy8/hqdefault.jpg
+  
+  https://img.thrfun.com/img/024/498/tortoiseshell_cats_l1.jpg
+
+  https://i.ytimg.com/vi/6SJJBN_Lrsk/hqdefault.jpg
+
+
+
+https://www.catnipcamera.com/wp-content/uploads/2014/11/DSCN1283-480x360_c.jpg
+
+https://r.ddmcdn.com/s_f/o_1/APL/uploads/2014/10/kitten-cuteness300.jpg
+
+https://www.petmd.com/sites/default/files/benadryl-for-cats.jpg
+
+https://i.ytimg.com/vi/XqN7ww3Zi4s/hqdefault.jpg
+
+https://i.ytimg.com/vi/D8ZBNnpvGl8/hqdefault.jpg
+
+https://littlebigcat.com/wp-content/uploads/2013/11/Itchy-cat1.jpg
+
+https://i.ytimg.com/vi/XbkJMzh2PRE/hqdefault.jpg
+
+https://i.ytimg.com/vi/SxtWq7lHi0M/hqdefault.jpg
+
+https://i.ytimg.com/vi/dAJlMUOjv1U/hqdefault.jpg
+
+https://www.catbreedselector.com/wp-content/uploads/2017/01/Ragamuffin-Cats.jpg
+
+https://i.ytimg.com/vi/zPOqj1_H200/hqdefault.jpg
